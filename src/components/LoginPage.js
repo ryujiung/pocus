@@ -42,6 +42,7 @@ function LoginPage() {
       }
     } catch (error) {
       // 네트워크 에러 처리
+      console.log(requestData)
       console.error("요청 중 오류 발생:", error);
       alert("요청 중 오류가 발생했습니다.");
     }
