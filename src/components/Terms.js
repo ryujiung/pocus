@@ -50,7 +50,6 @@ const TermsPageContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #1a237e;
   color: white;
   padding: 20px;
 `;

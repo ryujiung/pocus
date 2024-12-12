@@ -65,15 +65,6 @@ function SignupPage() {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <InputGroup>
-          <InputField
-            type="text"
-            placeholder="소속"
-            value={affiliation}
-            onChange={(e) => setAffiliation(e.target.value)}
-          />
-          <SearchButton type="button">🔍</SearchButton>
-        </InputGroup>
         <InputField
           type="text"
           placeholder="휴대폰 번호"
@@ -114,30 +105,46 @@ const SignupPageContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #0b1b63;
   color: white;
 `;
 
 const SignupTitle = styled.h2`
-  font-size: 24px;
+  font-size: 40px;
   margin-bottom: 20px;
+  text-align: left; /* 텍스트를 왼쪽 정렬 */
+  width: 100%; /* 부모 컨테이너의 전체 너비 사용 */
+  padding-left: 10px; /* 왼쪽 여백 추가 (선택 사항) */
 `;
 
 const SignupForm = styled.form`
   display: flex;
   flex-direction: column;
+  justify-content: center; /* 수직 중앙 정렬 */
+  align-items: center; /* 수평 중앙 정렬 */
   width: 80%;
   max-width: 400px;
 `;
 
 const InputField = styled.input`
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 14px;
-`;
+  width: 294px;
+  margin-bottom:10px;
+  padding: 10px 40px 10px 0; /* 오른쪽 아이콘 공간 확보 */
+  background-color: #101055;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  font-size: 20px;
+  color: white;
+  box-sizing: border-box;
+  outline: none;
 
+  &::placeholder {
+    color: #ccc; /* Placeholder 색상 */
+  }
+
+  &:focus {
+    border-bottom: 2px solid #3a63ff; /* 포커스 시 테두리 색 변경 */
+  }
+`;
 const InputGroup = styled.div`
   display: flex;
   align-items: center;
@@ -146,12 +153,14 @@ const InputGroup = styled.div`
 
 const SearchButton = styled.button`
   background-color: #3a63ff;
-  color: white;
-  border: none;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  padding: 10px;
-  margin-left: 10px;
-  cursor: pointer;
+  font-size: 14px;
+  width: 30px; /* 부모의 너비에 맞게 설정 */
+  height: 44px;
+  box-sizing: border-box; /* 패딩 포함 크기 계산 */
+  text-align: center; /* 텍스트 가운데 정렬 */
 
   &:hover {
     background-color: #1f4bd9;
@@ -159,13 +168,15 @@ const SearchButton = styled.button`
 `;
 
 const SubmitButton = styled.button`
-  background-color: #3a63ff;
-  color: white;
-  border: none;
+   background-color: #3a63ff;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 16px;
+  font-size: 20px;
+  width: 292px; /* 부모의 너비에 맞게 설정 */
+  height: 44px;
+  box-sizing: border-box; /* 패딩 포함 크기 계산 */
+  text-align: center; /* 텍스트 가운데 정렬 */
 
   &:hover {
     background-color: #1f4bd9;
@@ -175,7 +186,7 @@ const SubmitButton = styled.button`
 const TermsLink = styled(Link)`
   color: #3a63ff;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 20px;
   text-align: center;
   margin-bottom: 20px;
 

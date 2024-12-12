@@ -24,27 +24,27 @@ const MainPageContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #0b1b63;
   color: white;
 `;
 
 const Logo = styled.img`
   width: 283px;
   height: 124px;
-  margin-top: 167px;
-  margin-left: 50px;
+  margin-top:50px;
+  margin-bottom: 50px;
+  margin-left: 10px;
 `;
 
 
 const Button = styled.button`
-  width: 290px;
-  height: 43px;
+  width: 292px;
+  height: 44px;
   background-color: #2727AD; /* 버튼 배경색 */
   color: white; /* 텍스트 색상 */
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
-  margin: 10px;
+  margin-bottom: 10px;
   cursor: pointer;
   font-size: 16px;
 

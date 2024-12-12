@@ -81,18 +81,24 @@ const LoginPageContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #0b1b63;
   color: white;
 `;
 
 const LoginTitle = styled.h2`
-  font-size: 24px;
+  font-size: 40px;
   margin-bottom: 20px;
+  text-align: left; /* 텍스트를 왼쪽 정렬 */
+  width: 100%; /* 부모 컨테이너의 전체 너비 사용 */
+  padding-left: 10px; /* 왼쪽 여백 추가 (선택 사항) */
+  font-family: 'Pretendard', Arial, sans-serif;
+  
 `;
 
 const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
+  justify-content: center; /* 수직 중앙 정렬 */
+  align-items: center; /* 수평 중앙 정렬 */
   width: 80%;
   max-width: 400px;
 `;
@@ -102,17 +108,25 @@ const InputField = styled.input`
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 14px;
+  font-size: 20px;
+  width: 292px; /* 부모의 너비에 맞게 설정 */
+  max-width: 292px; /* 최대 너비 제한 */
+  height: 44px;
+  box-sizing: border-box; /* 패딩 포함 크기 계산 */
+  text-align: left; /* 텍스트 가운데 정렬 */
 `;
 
 const SubmitButton = styled.button`
-  background-color: #3a63ff;
-  color: white;
-  border: none;
+  background-color: #2727AD;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 16px;
+  font-size: 20px;
+  width: 292px; /* 부모의 너비에 맞게 설정 */
+  max-width: 292px; /* 최대 너비 제한 */
+  height: 44px;
+  box-sizing: border-box; /* 패딩 포함 크기 계산 */
+  text-align: center; /* 텍스트 가운데 정렬 */
 
   &:hover {
     background-color: #1f4bd9;
