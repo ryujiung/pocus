@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios"; // API 요청을 위해 Axios 사용
 
 function HomePage() {
+  const [currentDate, setCurrentDate] = useState("");
   const [tasks, setTasks] = useState([]); // 작업 데이터를 저장할 상태
   const [selectedCardIds, setSelectedCardIds] = useState([]); // 선택된 카드의 ID 목록
   const [loading, setLoading] = useState(true); // 로딩 상태
@@ -10,21 +11,28 @@ function HomePage() {
 
   // useEffect를 사용해 API에서 데이터 가져오기
   useEffect(() => {
+
+    const today = new Date();
+    const options = { weekday: "long",month: "long", day: "numeric" };
+    const formattedDate = today.toLocaleDateString("ko-KR", options); // 한국어 포맷
+    setCurrentDate(formattedDate);
+
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/tasks/"); // API 호출
-        console.log(response)
-        setTasks(response.data); // 가져온 데이터를 상태에 저장
-        setLoading(false); // 로딩 완료
+        const response = await fetch("/data.json"); // public 폴더의 JSON 파일 경로
+        if (!response.ok) throw new Error("데이터를 불러오는 데 실패했습니다.");
+        const data = await response.json();
+        setTasks(data); // 데이터를 상태에 저장
+        setLoading(false);
       } catch (err) {
         console.error("데이터 가져오기 실패:", err);
-        setError(err); // 에러 상태 저장
-        setLoading(false); // 로딩 완료
+        setError(err);
+        setLoading(false);
       }
     };
 
-    fetchData(); // 데이터 가져오기 호출
-  }, []); // 컴포넌트가 마운트될 때 한 번 실행
+    fetchData();
+  }, []);// 컴포넌트가 마운트될 때 한 번 실행
 
   const handleCardClick = (id, url) => {
     // 이미 선택된 카드인지 확인
@@ -53,12 +61,8 @@ function HomePage() {
         {/* 헤더 */}
         <HeaderContainer>
           <HeaderContent>
-            <HeaderDate>12월 13일 금요일</HeaderDate>
+            <HeaderDate>{currentDate}</HeaderDate>
             <HeaderCount>{tasks.length}건</HeaderCount>
-            <HeaderContact>
-              <HeaderIcon src="https://via.placeholder.com/24" alt="Icon" />
-              <span>010-0000-0000</span>
-            </HeaderContact>
           </HeaderContent>
         </HeaderContainer>
 
@@ -77,8 +81,21 @@ function HomePage() {
             >
               <ListTitle>{task.workname}</ListTitle>
               <ListTime>
-                {new Date(task.start_time).toLocaleString()} -{" "}
-                {new Date(task.end_time).toLocaleString()}
+                {new Date(task.start_time).toLocaleString("ko-KR", {
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}{" "}
+                -{" "}
+                {new Date(task.end_time).toLocaleString("ko-KR", {
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
               </ListTime>
               <ListDescription>{task.task_class}</ListDescription>
             </ListCard>
@@ -115,26 +132,40 @@ const HomePageContainer = styled.div`
 const HeaderContainer = styled.div`
   background-color: #1a237e;
   color: white;
-  text-align: center;
-  padding: 20px 10px;
+  text-align: left; /* 텍스트 왼쪽 정렬 */
+  padding: 20px;
   border-radius: 8px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   margin-bottom: 20px;
+  margin-left:10px;
+  display: flex;
+  flex-direction: column; /* 세로 정렬 */
+`;
+
+const HeaderDate = styled.h2`
+  font-size: 24px; /* 날짜 글씨 크기 증가 */
+  margin: 0;
+  font-weight: bold;
+  text-align: left;
+`;
+
+const HeaderSubText = styled.span`
+  font-size: 14px; /* 직책명 크기 */
+  color: #cccccc; /* 밝은 회색 */
+`;
+
+const HeaderCount = styled.div`
+  font-size: 64px; /* 건수 크기 증가 */
+  font-weight: bold;
+  margin-top: 10px;
+  color: white;
+  text-align: right; /* 왼쪽 정렬 */
 `;
 
 const HeaderContent = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const HeaderDate = styled.h2`
-  font-size: 16px;
-`;
-
-const HeaderCount = styled.span`
-  font-size: 16px;
-  color: #ccc;
+  flex-direction: column; /* 날짜와 건수의 세로 정렬 */
+  gap: 10px;
 `;
 
 const HeaderContact = styled.div`
@@ -157,6 +188,7 @@ const ListCard = styled.div`
   color: ${(props) => (props.selected ? "#000000" : "#ffffff")};
   padding: 20px 10px;
   margin-bottom: 20px;
+  margin-left:15px;
   border-radius: 12px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
@@ -168,16 +200,16 @@ const ListCard = styled.div`
 `;
 
 const ListTitle = styled.h3`
-  font-size: 18px;
+  font-size: 20px;
 `;
 
 const ListTime = styled.p`
-  font-size: 14px;
+  font-size: 18px;
   color: ${(props) => (props.selected ? "#555" : "#ccc")};
 `;
 
 const ListDescription = styled.p`
-  font-size: 14px;
+  font-size: 18px;
   color: ${(props) => (props.selected ? "#777" : "#bbb")};
 `;
 
