@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios"; // API 요청을 위해 Axios 사용
+import humanLogo from "../assets/Vector.png";
+import CapImage from "../assets/CapLeft.png"
 
 function HomePage() {
   const [currentDate, setCurrentDate] = useState("");
@@ -61,7 +63,9 @@ function HomePage() {
         {/* 헤더 */}
         <HeaderContainer>
           <HeaderContent>
-            <HeaderDate>{currentDate}</HeaderDate>
+            <HeaderDate><span>{currentDate}</span>
+             <HeaderSubText>포동이,작업자</HeaderSubText>
+            </HeaderDate>
             <HeaderCount>{tasks.length}건</HeaderCount>
           </HeaderContent>
         </HeaderContainer>
@@ -82,22 +86,25 @@ function HomePage() {
               <ListTitle>{task.workname}</ListTitle>
               <ListTime>
                 {new Date(task.start_time).toLocaleString("ko-KR", {
-                  year: "numeric",
-                  month: "2-digit",
-                  day: "2-digit",
                   hour: "2-digit",
                   minute: "2-digit",
+                  hourCycle: "h23",
                 })}{" "}
                 -{" "}
                 {new Date(task.end_time).toLocaleString("ko-KR", {
-                  year: "numeric",
-                  month: "2-digit",
-                  day: "2-digit",
                   hour: "2-digit",
                   minute: "2-digit",
+                  hourCycle: "h23",
                 })}
               </ListTime>
-              <ListDescription>{task.task_class}</ListDescription>
+              <ListDescription><span>{task.task_class}</span>
+              <span>
+              <img 
+                  src={humanLogo} 
+                  alt="Human Logo" 
+                  style={{ width: "16px", height: "16px", marginRight: "8px" }} // 이미지 스타일링
+                />
+                {task.participants.length}명</span></ListDescription>
             </ListCard>
           ))}
         </ListContainer>
@@ -115,6 +122,7 @@ const AppContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  
 `;
 
 const HomePageContainer = styled.div`
@@ -126,32 +134,38 @@ const HomePageContainer = styled.div`
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  background-image: url(${CapImage}); /* 배경 이미지 설정 */
+  background-size: cover; /* 배경 이미지 크기 설정 */
+  background-position: top -30px left 20px; /* 배경 이미지 위치 설정 */
+  background-repeat: no-repeat; /* 배경 이미지 반복 방지 */
 `;
 
 const HeaderContainer = styled.div`
-  background-color: #1a237e;
   color: white;
-  text-align: left; /* 텍스트 왼쪽 정렬 */
-  padding: 20px;
+  padding: 10px;
   border-radius: 8px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-  margin-bottom: 20px;
   margin-left:10px;
+  margin-right:22px;
   display: flex;
   flex-direction: column; /* 세로 정렬 */
 `;
 
 const HeaderDate = styled.h2`
+  margin-left: 15px;
   font-size: 24px; /* 날짜 글씨 크기 증가 */
-  margin: 0;
   font-weight: bold;
-  text-align: left;
+  display: flex;
+  flex-direction: column; /* 세로 정렬 */
+  align-items: flex-start; /* 텍스트 왼쪽 정렬 (중앙 정렬 시 center) */
 `;
 
 const HeaderSubText = styled.span`
-  font-size: 14px; /* 직책명 크기 */
-  color: #cccccc; /* 밝은 회색 */
+  margin-left:70px;
+  margin-top:10px;
+  font-weight:400;
+  font-size: 18px; /* 부제목 글씨 크기 */
+  color: #7494E4; /* 밝은 회색 */
+  font-weight:Semi Bold;
 `;
 
 const HeaderCount = styled.div`
@@ -164,8 +178,7 @@ const HeaderCount = styled.div`
 
 const HeaderContent = styled.div`
   display: flex;
-  flex-direction: column; /* 날짜와 건수의 세로 정렬 */
-  gap: 10px;
+  justify-content: space-between; /* 좌우 정렬 */
 `;
 
 const HeaderContact = styled.div`
@@ -186,30 +199,48 @@ const ListContainer = styled.div`
 const ListCard = styled.div`
   background-color: ${(props) => (props.selected ? "#ffffff" : "#2727ad")};
   color: ${(props) => (props.selected ? "#000000" : "#ffffff")};
-  padding: 20px 10px;
+  padding: 10px 10px;
+  margin-top:20px;
   margin-bottom: 20px;
-  margin-left:15px;
+  margin-left:30px;
+  margin-right:20px;
   border-radius: 12px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  height:120px;
+  width:300px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-
   &:hover {
     background-color: ${(props) => (props.selected ? "#f5f5f5" : "#3b3b9d")};
   }
 `;
 
 const ListTitle = styled.h3`
-  font-size: 20px;
+  margin-left:20px;
+  font-size: 22px;
+  margin-top:15px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  width: 200px; /* 너비 지정 */
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+  overflow: hidden; /* 넘치는 텍스트 숨기기 */
+  text-overflow: ellipsis; /* 초과된 텍스트를 "..."로 표시 */
 `;
 
 const ListTime = styled.p`
-  font-size: 18px;
+  margin-left:20px;
+  margin-top:10px;
+  font-size: 20px;
   color: ${(props) => (props.selected ? "#555" : "#ccc")};
 `;
 
 const ListDescription = styled.p`
-  font-size: 18px;
+  margin-left:20px;
+  margin-right:10px;
+  margin-top:-10px;
+  display: flex; /* Flexbox 사용 */
+  justify-content: space-between; /* 좌우 정렬 */
+  font-size: 20px;
   color: ${(props) => (props.selected ? "#777" : "#bbb")};
 `;
 

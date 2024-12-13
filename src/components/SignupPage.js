@@ -133,6 +133,7 @@ const InputField = styled.input`
   border: none;
   border-bottom: 2px solid #ccc;
   font-size: 20px;
+  font-weight:400;
   color: white;
   box-sizing: border-box;
   outline: none;
@@ -168,29 +169,31 @@ const SearchButton = styled.button`
 `;
 
 const SubmitButton = styled.button`
-   background-color: #3a63ff;
-  margin-bottom: 20px;
+  color:white;
+  background-color: #2727AD;
+  margin-top: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  font-weight:800;
   font-size: 20px;
   width: 292px; /* 부모의 너비에 맞게 설정 */
   height: 44px;
   box-sizing: border-box; /* 패딩 포함 크기 계산 */
   text-align: center; /* 텍스트 가운데 정렬 */
-
+  
   &:hover {
     background-color: #1f4bd9;
   }
 `;
 
 const TermsLink = styled(Link)`
-  color: #3a63ff;
+  color: white;
   text-decoration: none;
-  font-size: 20px;
-  text-align: center;
-  margin-bottom: 20px;
-
+  font-size:20px;
+  text-align:left;
+  font-weight: 200;
   &:hover {
     text-decoration: underline;
   }
+
 `;

@@ -11,7 +11,7 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault(); // 기본 폼 제출 동작 방지
 
-    const apiUrl = "https://localhost:8080/api/login"; // 실제 백엔드 URL로 변경
+    const apiUrl = "http://localhost:8000/api/user/login"; // 실제 백엔드 URL로 변경
 
     // 요청에 보낼 데이터
     const requestData = {
@@ -106,10 +106,11 @@ const LoginForm = styled.form`
 
 const InputField = styled.input`
   padding: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 13px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 20px;
+  font-weight:400;
+  font-size: 18px;
   width: 292px; /* 부모의 너비에 맞게 설정 */
   max-width: 292px; /* 최대 너비 제한 */
   height: 44px;
@@ -118,10 +119,12 @@ const InputField = styled.input`
 `;
 
 const SubmitButton = styled.button`
+  color:white;
   background-color: #2727AD;
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  font-weight:800;
   font-size: 20px;
   width: 292px; /* 부모의 너비에 맞게 설정 */
   max-width: 292px; /* 최대 너비 제한 */
@@ -135,13 +138,15 @@ const SubmitButton = styled.button`
 `;
 
 const SignupLink = styled.p`
-  margin-top: 20px;
+  margin-top:-5px;
+  font-weight: 400;
+  color:#ababab;
 `;
 
 const SignupLinkAnchor = styled.a`
-  color: #3a63ff;
+  color: white;
   text-decoration: none;
-
+  font-weight: 200;
   &:hover {
     text-decoration: underline;
   }

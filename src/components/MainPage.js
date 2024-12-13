@@ -40,13 +40,14 @@ const Button = styled.button`
   width: 292px;
   height: 44px;
   background-color: #2727AD; /* 버튼 배경색 */
+  font-weight:800;
   color: white; /* 텍스트 색상 */
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
   margin-bottom: 10px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 20px;
 
   &:hover {
     background-color: #1a1a89; /* 호버 상태에서 약간 어두운 색 */

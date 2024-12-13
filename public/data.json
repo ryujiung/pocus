@@ -4,12 +4,12 @@
         "date": "2024-12-13",
         "start_time": "2024-12-13T00:57:00Z",
         "end_time": "2024-12-13T01:01:00Z",
-        "workname": "작업1",
+        "workname": "5소결 소결기 대차 #15 Wheel 교체",
         "area": "1조",
         "task_class": "전기작업",
         "start_tag": "2024-12-13T00:58:00Z",
         "end_tag": "2024-12-13T01:04:00Z",
-        "participants": []
+        "participants": ["류지웅","정길준","이지환"]
     },
     {
         "id": 2,

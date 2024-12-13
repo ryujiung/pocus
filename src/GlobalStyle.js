@@ -8,6 +8,22 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
   }
 
+  @font-face {
+        font-family: 'Pretendard';
+        src: url('/fonts/Pretendard-Thin/Pretendard-Regular.otf') format('opentype');
+        font-weight: 400; /* ExtraBold의 font-weight 설정 */
+        font-style: normal;
+    }
+
+  @font-face {
+        font-family: 'Pretendard';
+        src: url('/fonts/Pretendard-Thin/Pretendard-SemiBold.otf') format('opentype');
+        font-weight: 200; /* ExtraBold의 font-weight 설정 */
+        font-style: normal;
+    }
+
+}
+
   body {
     font-family: 'Pretendard', Arial, sans-serif; /* Pretendard를 기본 폰트로 설정 */
     margin: 0;
